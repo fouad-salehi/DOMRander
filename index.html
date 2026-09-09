@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DOMRander Playground</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f4f6fa;
+            color: #1a1e24;
+            padding: 28px 24px;
+            display: flex;
+            flex-direction: column;
+            direction: ltr;
+        }
+
+        .app {
+            max-width: 1480px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px 20px;
+            margin-bottom: 32px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .brand h1 {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.4px;
+            background: linear-gradient(145deg, #0b0f14, #2d3748);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .brand p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            direction: ltr;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 60px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e9edf2;
+            color: #1a1e24;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-links a:hover {
+            background: #f0f4fe;
+            border-color: #b4c8e0;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .nav-links svg {
+            width: 22px;
+            height: 22px;
+            fill: #1a1e24;
+            flex-shrink: 0;
+        }
+
+        .nav-links .orcid-icon {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.02), 0 2px 8px rgba(0, 0, 0, 0.02);
+            border: 1px solid #edf2f7;
+            overflow: hidden;
+            transition: box-shadow 0.15s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            padding: 16px 22px;
+            background: #fafbfc;
+            border-bottom: 1px solid #edf2f7;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-header span {
+            opacity: 0.7;
+        }
+
+        .card-body {
+            padding: 18px 20px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 220px;
+            flex: 1;
+            resize: vertical;
+            border: 0;
+            outline: 0;
+            padding: 14px 16px;
+            background: #f9fafc;
+            color: #1a1e24;
+            font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.7;
+            direction: ltr;
+            text-align: left;
+            border-radius: 14px;
+            border: 1px solid #edf2f7;
+            transition: 0.1s ease;
+        }
+
+        textarea:focus {
+            background: #ffffff;
+            border-color: #cbd5e0;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.08);
+        }
+
+        .btn {
+            border: 0;
+            border-radius: 60px;
+            padding: 12px 32px;
+            font-weight: 500;
+            font-size: 14px;
+            background: #111;
+            color: white;
+            cursor: pointer;
+            transition: 0.12s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            letter-spacing: 0.2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #1a1e24;
+            border: 1px solid #dce2e9;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: #f1f4f9;
+            border-color: #b8c5d4;
+        }
+
+        .btn-primary {
+            background: #0b0f14;
+        }
+
+        .btn-primary:hover {
+            background: #262e38;
+            transform: scale(0.97);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-top: 8px;
+            margin-bottom: 40px;
+        }
+
+        .preview-box {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #edf2f7;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.01);
+        }
+
+        .preview-box .card-header {
+            background: #fafbfc;
+        }
+
+        .preview-container,
+        .output-container {
+            padding: 28px 24px;
+            min-height: 340px;
+            background: #fbfdff;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #preview {
+            display: inline-block;
+        }
+
+        #output canvas {
+            max-width: 100%;
+            height: auto;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .error {
+            color: #c92a2a;
+            background: #fff5f5;
+            padding: 14px 18px;
+            border-radius: 14px;
+            border-left: 4px solid #fa5252;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            width: 100%;
+        }
+
+        .footer {
+            margin-top: auto;
+            padding: 24px 0 12px;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+        }
+
+        .footer span {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 1100px) {
+            .grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .preview-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+            body {
+                padding: 16px;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                align-self: flex-start;
+            }
+
+            .preview-container,
+            .output-container {
+                min-height: 260px;
+                padding: 20px 16px;
+            }
+        }
+    </style>
+
+    </head>
+    <body>
+
+        <div class="app">
+
+        <div class="top-bar">
+            <div class="brand">
+                <h1>DOMRander</h1>
+                <p>DOM → Canvas · real-time playground</p>
+            </div>
+
+            <div class="nav-links">
+                <a href="https://github.com/fouad-salehi" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <svg viewBox="0 0 16 16" aria-hidden="true">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                </a>
+
+            <a href="https://orcid.org/0009-0008-6241-8599" target="_blank" rel="noopener noreferrer" aria-label="ORCID">
+                <svg class="orcid-icon" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="128" cy="128" r="128" fill="#A6CE39"/>
+                    <path fill="#FFFFFF" d="M86.5 72h18v112h-18V72zm35.5 0h37.5c34.5 0 57.5 22.8 57.5 56s-23 56-57.5 56H122V72zm18 16v80h19.5c24.5 0 39-15.5 39-40s-14.5-40-39-40H140z"/>
+                    <path fill="#FFFFFF" d="M75 72h18v18H75z"/>
+                </svg>
+            </a>
+            </div>
+        </div>
+
+        <div class="grid-3">
+
+            <div class="card">
+                <div class="card-header">HTML</div>
+                <div class="card-body">
+                    <textarea id="htmlInput"><div class="test-card">
+        <h2>سلام دنیا</h2>
+        <p>
+            Hello World 123
+        </p>
+        <p>
+            فارسی + English + ★ ♥ →
+        </p>
+        <span>
+            DOMRander
+        </span>
+
+        </div></textarea>
+                    </div>
+                </div>
+
+            <div class="card">
+                <div class="card-header">CSS</div>
+                <div class="card-body">
+                    <textarea id="cssInput">.test-card {
+        width: 420px;
+        padding: 30px;
+        border-radius: 20px;
+        background: linear-gradient(
+            135deg,
+            #171717,
+            #3a3a3a
+        );
+        color: white;
+        box-shadow:
+            0 20px 50px rgba(0, 0, 0, .5);
+        direction: rtl;
+        text-align: right;
+
+        }
+        .test-card h2 {
+        margin: 0 0 20px;
+        font-size: 28px;
+        }
+        .test-card p {
+        font-size: 18px;
+        line-height: 2;
+        }
+        .test-card span {
+        direction: ltr;
+        display: block;
+        margin-top: 20px;
+        font-size: 20px;
+        }</textarea> </div> </div>
+
+            <div class="card">
+                <div class="card-header">Controls</div>
+                <div class="card-body" style="justify-content: center; gap: 12px;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 14px; margin: 8px 0 4px;">
+                        <button class="btn btn-primary" id="renderButton">Render</button>
+                        <button class="btn btn-outline" id="saveButton">Save PNG</button>
+                        <a class="btn btn-outline" href="domrander.js" download="domrander.js">Download Engine</a>
+                    </div>
+
+                    <div style="margin-top: 12px; font-size: 13px; color: #64748b; border-top: 1px solid #edf2f7; padding-top: 16px; width: 100%;">
+                        <span style="display: block; line-height: 1.5;">Live preview + canvas output</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="preview-grid">
+
+            <div class="preview-box">
+                <div class="card-header">Browser Preview</div>
+                <div class="preview-container">
+                    <div id="preview"></div>
+                </div>
+            </div>
+
+            <div class="preview-box">
+                <div class="card-header">DOMRander Output</div>
+                <div class="output-container">
+                    <div id="output"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            <span>© 2026 Fouad Salehi · DOMRander · All Rights Reserved</span>
+        </footer>
+
+        </div>
+
+        <script src="domrander.js"></script>
+        <script src="app.js"></script>
+
+    </body>
+</html>
