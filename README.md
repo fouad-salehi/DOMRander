@@ -130,7 +130,10 @@ These examples are useful for testing:
 
 ## Screenshots
 
-<img src="https://github.com/user-attachments/assets/e4449cd2-0510-455a-bb33-5e6a61239445" width="420"> <img src="https://github.com/user-attachments/assets/a810b43e-9930-40d4-b7df-09b7f47f4dbc" width="420">
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e4449cd2-0510-455a-bb33-5e6a61239445" width="24%" style="border-radius: 12px;" />
+  <img src="https://github.com/user-attachments/assets/a810b43e-9930-40d4-b7df-09b7f47f4dbc" width="24%" style="border-radius: 12px;" />
+</p>
 
 Screenshots from the App UI and Export Output
 
