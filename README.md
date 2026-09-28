@@ -8,7 +8,7 @@
 ![Canvas](https://img.shields.io/badge/output-HTML%20Canvas-orange)
 ![License](https://img.shields.io/badge/license-Custom%20%2F%20Proprietary-red)
 
-<img width="1671" height="941" alt="DOMRander - A lightweight, dependency-free DOM" src="https://github.com/user-attachments/assets/884ba480-d256-46e0-b4b6-594b365a51fa" />
+<img width="1671" height="836" alt="DOMRander - A lightweight, dependency-free DOM" src="https://github.com/user-attachments/assets/400673c6-6cf2-4a9c-b387-90d9a71da932" />
 
 
 ## Features
