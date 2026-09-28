@@ -351,10 +351,7 @@ Contributions, modifications, redistribution, and derivative works require prior
 
 ## Author
 
-**Fouad Salehi**
-
-GitHub: https://github.com/fouad-salehi
-ORCID: https://orcid.org/0009-0008-6241-8599
+[**Fouad Salehi**](https://github.com/fouad-salehi)
 
 ## License
 
