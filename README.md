@@ -8,9 +8,8 @@
 ![Canvas](https://img.shields.io/badge/output-HTML%20Canvas-orange)
 ![License](https://img.shields.io/badge/license-Custom%20%2F%20Proprietary-red)
 
-DOMRander is a lightweight, dependency-free JavaScript renderer that converts HTML and CSS DOM elements into HTML Canvas.
+<img width="1671" height="941" alt="DOMRander - A lightweight, dependency-free DOM" src="https://github.com/user-attachments/assets/884ba480-d256-46e0-b4b6-594b365a51fa" />
 
-It is designed with a strong focus on Persian, Arabic, RTL, mixed RTL/LTR, and Unicode text rendering while providing a simple browser-based API.
 
 ## Features
 
