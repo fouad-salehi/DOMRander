@@ -355,14 +355,10 @@ Contributions, modifications, redistribution, and derivative works require prior
 
 ## License
 
-DOMRander is **not** licensed under MIT, Apache, GPL, or another open-source license.
+DOMRander is **proprietary software**, not open source. You may view and run the project for personal or evaluation purposes only. Copying, modifying, or redistributing any part of the project is not permitted without prior written permission.
 
-DOMRander is distributed under a custom proprietary license.
-
-See the [`LICENSE`](./LICENSE) file for the complete terms.
+See the [LICENSE](./LICENSE) file for the complete terms.
 
 ## Copyright
 
 Copyright © 2026 Fouad Salehi. All rights reserved.
-
-DOMRander — DOM to Canvas Renderer
