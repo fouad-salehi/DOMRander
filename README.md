@@ -10,7 +10,6 @@
 
 <img width="1671" height="836" alt="DOMRander - A lightweight, dependency-free DOM" src="https://github.com/user-attachments/assets/400673c6-6cf2-4a9c-b387-90d9a71da932" />
 
-
 ## Features
 
 * HTML to Canvas rendering
@@ -340,13 +339,14 @@ DOMRander is designed for modern browsers that support:
 * `document.fonts`
 * Modern JavaScript
 
-## Contributing
-
-DOMRander is currently distributed under a custom proprietary license.
-
-The source code may be viewed and executed according to the terms defined in the `LICENSE` file.
-
-Contributions, modifications, redistribution, and derivative works require prior written permission from the copyright owner.
+> [!NOTE]
+> **Contributing**
+>
+> DOMRander is currently distributed under a custom proprietary license.
+>
+> The source code may be viewed and executed according to the terms defined in the `LICENSE` file.
+>
+> Contributions, modifications, redistribution, and derivative works require prior written permission from the copyright owner.
 
 ## Author
 
